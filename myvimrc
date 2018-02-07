@@ -6,6 +6,45 @@ syntax on
 filetype plugin indent on
 filetype indent on
 
+let mapleader = ' '
+
+inoremap <C-l> <Esc>A
+inoremap <C-h> <Esc>I
+inoremap <C-;> <Esc>A;<Esc>o
+
+set number
+" incsearch: search increamentally
+set incsearch hlsearch
+" When 'ignorecase' and 'smartcase' are both on, if a pattern contains an uppercase letter, it is case sensitive
+set ignorecase smartcase
+" set clipboard=unnamed
+set scrolloff=5
+set showmode
+
+" easy system clipboard copy/paste to next line
+noremap <leader>y "+y
+noremap <leader>Y "+Y
+noremap <leader>p "+p
+noremap <leader>P "+P
+" clear the search buffer when hitting return
+nnoremap <space><cr> :nohlsearch<cr>
+
+inoremap jk <Esc>
+vnoremap jk <Esc> 
+
+noremap  <c-f> <c-d>
+noremap  <c-b> <c-u>
+" VimMotionJump{Next,Previous}
+nnoremap <c-p> <c-i>
+nnoremap <c-[> <c-t>
+nnoremap <tab> <c-w>w
+
+nnoremap Y y$
+nnoremap Q @q
+" add an empty line above
+nnoremap [<space> O<esc>j
+" add an empty line below
+nnoremap ]<space> o<esc>k
 
 " VIM Configuration File
 " Description: Optimized for C/C++ development, but useful also for other things.
@@ -43,7 +82,7 @@ set showmatch
 set comments=sl:/*,mb:\ *,elx:\ */
 
 " default auto-completion for c family
-let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
+" let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
 
 " Enhanced keyboard mappings
 "
@@ -120,21 +159,18 @@ autocmd FileType python nnoremap <buffer> <F5> :exec 'w !python3' shellescape(@%
 
 "
 " Let syntastic check syntax for python 3
-let g:syntastic_python_flake8_exec = 'python3.6'
+let g:syntastic_python_flake8_exec = 'python3'
 let g:syntastic_python_flake8_args = ['-m', 'flake8', '--ignore', 'E501']
 " let g:syntastic_python_flake8_args = '--ignore=E501'
-let g:syntastic_python_pylint_exe = 'python3.6 -m pylint3'
+let g:syntastic_python_pylint_exe = 'python3 -m pylint3'
 "
 "
 "To let YouCompleteMe to provide Python 3 completion
-let g:ycm_python_binary_path = '/usr/bin/python3.6'
+let g:ycm_python_binary_path = '/usr/local/bin/python3'
 
 
 " Show linenumbers
 set number
-
-" set mapleader to a easier typable key
-let mapleader = ","
 
 
 syntax enable
@@ -143,9 +179,6 @@ colorscheme solarized
 
 " to avoid see underscore (_) as space
 :set linespace=2
-
-" show highlights of the whole match
-set hlsearch
 
 "=============================================================
 " How to paste in insert mode
@@ -182,37 +215,3 @@ let g:slime_paste_file = "$HOME/.slime_paste"
 " using % to jump between maching keywords
 runtime macros/matchit.vim
 
-" Add support for systemverilog and verilog
-augroup verilog_sv
-    autocmd!
-    autocmd FileType systemverilog,verilog if isdirectory('~/.vim/bundle-sv') | execute pathogen#infect('bundle/{}') | endif
-
-    if exists('loaded_matchit')
-        let b:match_ignorecase=1
-        let b:match_words=
-          \ '\<begin\>:\<end\>,' .
-          \ '\<if\>:\<else\>,' .
-          \ '\<module\>:\<endmodule\>,' .
-          \ '\<class\>:\<endclass\>,' .
-          \ '\<program\>:\<endprogram\>,' .
-          \ '\<clocking\>:\<endclocking\>,' .
-          \ '\<property\>:\<endproperty\>,' .
-          \ '\<sequence\>:\<endsequence\>,' .
-          \ '\<package\>:\<endpackage\>,' .
-          \ '\<covergroup\>:\<endgroup\>,' .
-          \ '\<primitive\>:\<endprimitive\>,' .
-          \ '\<specify\>:\<endspecify\>,' .
-          \ '\<generate\>:\<endgenerate\>,' .
-          \ '\<interface\>:\<endinterface\>,' .
-          \ '\<function\>:\<endfunction\>,' .
-          \ '\<task\>:\<endtask\>,' .
-          \ '\<case\>\|\<casex\>\|\<casez\>:\<endcase\>,' .
-          \ '\<fork\>:\<join\>\|\<join_any\>\|\<join_none\>,' .
-          \ '`ifdef\>:`else\>:`endif\>,'
-    endif
-
-    autocmd FileType systemverilog,verilog set sw=4
-    autocmd FileType systemverilog,verilog set ts=4
-    autocmd FileType systemverilog,verilog set sts=4
-    autocmd FileType systemverilog,verilog set colorcolumn=120
-augroup END
