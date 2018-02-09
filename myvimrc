@@ -7,10 +7,14 @@ filetype plugin indent on
 filetype indent on
 
 let mapleader = ' '
+noremap <CR> :
 
 inoremap <C-l> <Esc>A
 inoremap <C-h> <Esc>I
 inoremap <C-;> <Esc>A;<Esc>o
+autocmd FileType java inoremap {} {<cr>}<Esc>O
+autocmd FileType java inoremap soutn<Tab>      System.out.println("");<Esc>F"i
+autocmd FileType java inoremap sout<Tab>      System.out.print("");<Esc>F"i
 
 set number
 " incsearch: search increamentally
@@ -31,13 +35,16 @@ nnoremap <space><cr> :nohlsearch<cr>
 
 inoremap jk <Esc>
 vnoremap jk <Esc> 
+" this is for mapping in command line
+onoremap jk <Esc>
+cnoremap jk <C-C><Esc>
 
 noremap  <c-f> <c-d>
 noremap  <c-b> <c-u>
 " VimMotionJump{Next,Previous}
-nnoremap <c-p> <c-i>
-nnoremap <c-[> <c-t>
-nnoremap <tab> <c-w>w
+" nnoremap <c-p> <c-i>
+" nnoremap <c-[> <c-t>
+" nnoremap <tab> <c-w>w
 
 nnoremap Y y$
 nnoremap Q @q
