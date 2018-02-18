@@ -28,6 +28,8 @@ nnoremap <space><cr> :nohlsearch<cr>
 
 inoremap jk <Esc>
 vnoremap jk <Esc> 
+onoremap jk <Esc>
+cnoremap jk <C-C><Esc>
 
 noremap  <c-f> <c-d>
 noremap  <c-b> <c-u>
@@ -74,7 +76,6 @@ nnoremap <leader>ns :action GenerateSetter<cr>
 nnoremap <leader>nb :action GenerateGetterAndSetter<cr>
 nnoremap <leader>nc :action GenerateConstructor<cr>
 
-nnoremap <leader>ff :action FindInPath<cr>
 nnoremap <leader>fu :action FindUsages<cr>
 nnoremap <leader>su :action ShowUsages<cr>
 nnoremap <leader>cv :action ChangeView<cr>
@@ -86,7 +87,7 @@ nnoremap <leader>re :action RenameElement<cr>
 nnoremap <leader>rf :action RenameFile<cr>
 nnoremap <leader>rc :action ReformatCode<cr>
 nnoremap <leader>mv :action ActivateMavenProjectsToolWindow<cr>
-nnoremap <leader>dd :action Debug<cr>
+nnoremap <leader>rd :action Debug<cr>
 nnoremap <leader>dc :action ChooseDebugConfiguration<cr>
 nnoremap <leader>rr :action Run<cr>
 nnoremap <leader>rc :action RunClass<cr>
